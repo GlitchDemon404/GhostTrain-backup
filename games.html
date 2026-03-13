@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<title>Ghost Train | Arcade</title>
+
+<link rel="icon" type="image/png" href="sj.png">
+
+<script src="/scram/scramjet.all.js"></script>
+<script src="/baremux/index.js"></script>
+
+<link rel="stylesheet" href="index.css">
+
+<script src="register-sw.js" defer></script>
+<script src="search.js" defer></script>
+<script src="index.js" defer></script>
+<script src="g.js" defer></script>
+
+</head>
+
+<body>
+
+<div title="Ghost Train Logo" class="flex-center logo-wrapper header-center">
+
+<img class="logo" src="sj.png" alt="Ghost Train"
+style="width:150px; filter:drop-shadow(0 0 15px #00ff88);">
+
+<h1 style="text-shadow:0 0 20px #00ff88; font-family:monospace; font-size:80px;">
+GHOST ARCADE
+</h1>
+
+</div>
+
+
+<div class="flex-center desc left-margin">
+
+<p style="text-align:center; margin-left:auto; color:#cccccc; font-family:monospace; font-size:1.1rem; text-shadow:0 0 10px rgba(0,255,136,2.5); max-width:600px; line-height:1.5; margin:20px auto;">
+Welcome to the game station!
+</p>
+
+</div>
+
+
+<nav class="side-nav">
+<ul>
+
+<li>
+<a href="index.html" title="Home">
+<img src="home.png" class="nav-icon">
+</a>
+</li>
+
+<li>
+<a href="games.html" title="Games">
+<img src="games.png" class="nav-icon">
+</a>
+</li>
+
+<li>
+<a href="movies.html" title="Movies">
+<img src="movies.png" class="nav-icon">
+</a>
+</li>
+
+<li>
+<a href="music.html" title="Music">
+<img src="music.png" class="nav-icon">
+</a>
+</li>
+
+<li>
+<a href="settings.html" title="Settings">
+<img src="settings.png" class="nav-icon">
+</a>
+</li>
+
+</ul>
+</nav>
+
+
+<p id="sj-error"></p>
+<pre id="sj-error-code"></pre>
+
+
+
+
+<input id="search" placeholder="Search games..."
+style="
+display:block;
+margin:25px auto;
+padding:12px 16px;
+width:320px;
+background:black;
+border:2px solid #00ff88;
+color:white;
+font-family:monospace;
+border-radius:12px;
+outline:none;
+">
+
+
+<div id="games" style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+padding:40px;
+width:90%;
+margin:auto;
+"></div>
+
+
+<div id="gameContainer" style="
+display:none;
+position:fixed;
+inset:0;
+background:black;
+z-index:9999;
+flex-direction:column;
+">
+
+<div id="gameHeader" style="
+height:60px;
+background:black;
+border-bottom:2px solid #00ff88;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+font-family:monospace;
+color:white;
+">
+
+<button class="back-btn" onclick="closeGame()" style="
+background:none;
+border:none;
+color:#00ff88;
+font-size:20px;
+cursor:pointer;
+">
+←
+</button>
+
+<span id="game-title" style="text-shadow:0 0 10px #00ff88;">
+Game
+</span>
+
+<button class="gh-action" onclick="closeGame()" style="
+background:none;
+border:none;
+color:#00ff88;
+font-size:20px;
+cursor:pointer;
+">
+✕
+</button>
+
+</div>
+
+<div id="gameContent" style="flex:1;"></div>
+
+</div>
+
+
+<footer>
+<div></div>
+<div></div>
+</footer>
+
+</body>
+</html>
