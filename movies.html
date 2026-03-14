@@ -1,176 +1,231 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ghost Train | Theator</title>
+<title>Ghost Train | Theater</title>
+
 <style>
-    *{margin:0;padding:0;box-sizing: border-box;}
-    body {
-        background: radial-gradient(circle, #000 0%, #002d1a 100%);
-        min-height: 100vh;
-        overflow-y: auto;
-        font-family: monospace;
-        display: flex;
-        flex-direction: column;
-        color: white;
-    }
-    .header-wrapper {
-        text-align: center;
-        padding: 25px 0 10px 0;
-    }
-    .header-wrapper h1 {
-        font-size: 50px;
-        text-shadow: 0 0 20px #00ff88;
-    }
-    .search-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-    .search-bar {
-        display: flex;
-        align-items: center;
-        background: rgba(255,255,255,0.08);
-        border: 1px solid rgba(0,255,136,0.4);
-        border-radius: 30px;
-        backdrop-filter: blur(12px);
-        padding: 6px;
-        width: 420px;
-        box-shadow: 0 0 15px rgba(0,255,136,0.2);
-    }
-    .search-bar input {
-        flex: 1;
-        background: transparent;
-        border: none;
-        outline: none;
-        color: white;
-        font-size: 16px;
-        padding: 10px 14px;
-    }
-    .search-bar input::placeholder {
-        color:#00ff88;
-    }
-    .search-bar button {
-        background-color: #00ff88;
-        border: none;
-        border-radius: 24px;
-        padding: 10px 18px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: .25s;
-    }
-    .search-bar button:hover {
-        background-color: #00cc6f;
-    }
-    .side-nav {
-        position: fixed;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 70px;
-        background: rgba(255,255,255,0.15);
-        backdrop-filter: blur(15px);
-        border-radius: 40px;
-        border: 1px solid rgba(0,255,136,0.3);
-        padding: 25px 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 0 0 25px rgba(0,0,0,0.7);
-        z-index: 1000;
-    }
-    .side-nav ul {
-        list-style: none;
-    }
-    .side-nav li {
-        margin: 20px 0;
-    }
-    .nav-icon {
-        width: 28px;
-        transition: .3s;
-    }
-    .side-nav a:hover .nav-icon {
-        transform: scale(1.25);
-        filter: drop-shadow(0 0 10px #00ff88);
-    }
-    main {
-        padding: 10px 110px 40px 30px;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-    }
-    .frame-container {
-        width: 100%;
-        height: 520px;
-        background: #000;
-        border: 2px solid #00ff88;
-        border-radius: 50px;
-        box-shadow: 0 0 30px rgba(0,255,136,0.4);
-        overflow: hidden;
-    }
-    iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-    .movie-list {
-        display:grid;
-        grid-template-columns: repeat(auto-fill,minmax(170px,1fr));
-        gap: 20px;
-    }
-    .movie {
-        cursor: pointer;
-        transition: .25s;
-    }
-    .movie img {
-        width: 100%;
-        border-radius: 12px;
-        border: 2px solid #00ff88;
-    }
-    .movie:hover {
-        transform: scale(1.08);
-    }
-    </style>
-    </head>
-    <body>
-        <div class="header-wrapper">
-            <h1>Ghost Theater</h1>
-        </div>
 
-        <div class="search-container">
-        <div class="search-bar">
-        <input id="searchInput" placeholder="search movies &lpar;All movies&par;">
-        </div>
-    </div>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    <nav class="side-nav">
-    <ul>
-        <li><a href="index.html" title="Home"><img src="home.png" class="nav-icon"></a></li>
-        <li><a href="games.html" title="Games"><img src="games.png" class="nav-icon"></a></li>
-        <li><a href="movies.html" title="Movies"><img src="movies.png" class="nav-icon"></a></li>
-        <li><a href="music.html" title="Music"><img src="music.png" class="nav-icon"></a></li>
-        <li><a href="settings.html" title="Settings"><img src="settings.png" class="nav-icon"></a></li>
-    </ul>
+body{
+background:radial-gradient(circle,#000000 0%,#002d1a 100%);
+min-height:100vh;
+overflow-y:auto;
+font-family:monospace;
+display:flex;
+flex-direction:column;
+color:white;
+}
+
+.header-wrapper{
+text-align:center;
+padding:25px 0 10px 0;
+}
+
+.header-wrapper h1{
+font-size:50px;
+text-shadow:0 0 20px #00ff88;
+}
+
+.search-container{
+display:flex;
+justify-content:center;
+margin-bottom:20px;
+}
+
+.search-bar{
+display:flex;
+align-items:center;
+background:rgba(255,255,255,0.08);
+border:1px solid rgba(0,255,136,0.4);
+border-radius:30px;
+backdrop-filter:blur(12px);
+padding:6px;
+width:420px;
+box-shadow:0 0 15px rgba(0,255,136,0.2);
+}
+
+.search-bar input{
+flex:1;
+background:transparent;
+border:none;
+outline:none;
+color:white;
+font-size:16px;
+padding:10px 14px;
+}
+
+.search-bar input::placeholder{
+color:#b8ffe3;
+}
+
+.search-bar button{
+background:#00ff88;
+border:none;
+border-radius:24px;
+padding:10px 18px;
+font-weight:bold;
+cursor:pointer;
+transition:.25s;
+}
+
+.search-bar button:hover{
+background:#00cc6f;
+}
+
+.side-nav{
+position:fixed;
+right:20px;
+top:50%;
+transform:translateY(-50%);
+width:70px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+border-radius:40px;
+border:1px solid rgba(0,255,136,0.3);
+padding:25px 0;
+display:flex;
+flex-direction:column;
+align-items:center;
+box-shadow:0 0 25px rgba(0,0,0,0.7);
+z-index:1000;
+}
+
+.side-nav ul{list-style:none;}
+.side-nav li{margin:20px 0;}
+
+.nav-icon{
+width:28px;
+transition:.3s;
+}
+
+.side-nav a:hover .nav-icon{
+transform:scale(1.25);
+filter:drop-shadow(0 0 10px #00ff88);
+}
+
+main{
+padding:10px 110px 40px 30px;
+display:flex;
+flex-direction:column;
+gap:30px;
+}
+
+.frame-container{
+width:100%;
+height:520px;
+background:#000;
+border:2px solid #00ff88;
+border-radius:20px;
+box-shadow:0 0 30px rgba(0,255,136,0.4);
+overflow:hidden;
+}
+
+iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+.movie-list{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+gap:20px;
+}
+
+.movie{
+cursor:pointer;
+transition:.25s;
+}
+
+.movie img{
+width:100%;
+border-radius:12px;
+border:2px solid #00ff88;
+}
+
+.movie:hover{
+transform:scale(1.08);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header-wrapper">
+<h1>GHOST THEATER</h1>
+</div>
+
+<div class="search-container">
+<div class="search-bar">
+<input id="searchInput" placeholder="Search movies...">
+<button onclick="searchMovies()">Search</button>
+</div>
+</div>
+
+<nav class="side-nav">
+<ul>
+<li><a href="index.html"><img src="home.png" class="nav-icon"></a></li>
+<li><a href="games.html"><img src="games.png" class="nav-icon"></a></li>
+<li><a href="movies.html"><img src="movies.png" class="nav-icon" style="filter:drop-shadow(0 0 10px #00ff88) brightness(1.3);"></a></li>
+<li><a href="music.html"><img src="music.png" class="nav-icon"></a></li>
+<li><a href="settings.html"><img src="settings.png" class="nav-icon"></a></li>
+</ul>
 </nav>
 
 <main>
-    <div class="frame-container">
-    <iframe id="player" allowfullscreen></iframe>
-    </div>
 
-    <div class="movie-list" id="movies"></div>
+<div class="frame-container">
+<iframe id="player" allowfullscreen></iframe>
+</div>
+
+<div class="movie-list" id="movies"></div>
+
 </main>
 
 <script>
-    const apiKey="00119ffd2d069c15532a335d74664364"
-    const movies=document.getElementById("movies")
-    const player=document.getElementById("player")
 
+const apiKey="00119ffd2d069c15532a335d74664364";
+const movies=document.getElementById("movies")
+const player=document.getElementById("player")
 
-    async function name(params) {
-       
-    }
-       
-    </body>
+async function loadMovies(){
+movies.innerHTML=""
+for(let page=1;page<=6;page++){
+const res=await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&page=${page}`)
+const data=await res.json()
+renderMovies(data.results)
+}
+}
 
+function renderMovies(list){
+list.forEach(movie=>{
+if(!movie.poster_path)return
+const div=document.createElement("div")
+div.className="movie"
+div.innerHTML=`<img src="https://image.tmdb.org/t/p/w500${movie.poster_path}">`
+div.onclick=()=>{
+player.src=`https://vidsrc.to/embed/movie/${movie.id}`
+}
+movies.appendChild(div)
+})
+}
+
+async function searchMovies(){
+const q=document.getElementById("searchInput").value
+if(!q)return
+movies.innerHTML=""
+const res=await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${q}`)
+const data=await res.json()
+renderMovies(data.results)
+}
+
+loadMovies()
+
+</script>
+
+</body>
+</html>
