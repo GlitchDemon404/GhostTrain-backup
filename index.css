@@ -347,8 +347,8 @@ opacity:1;
     position: fixed;
     bottom: 20px;
     left: 20px;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     background-color: #5865F2; /* Discord Blue */
     border-radius: 50%;
     display: flex;
