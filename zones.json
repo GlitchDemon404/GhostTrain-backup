@@ -49,8 +49,8 @@
   },
   {
     "name": "Balatro",
-    "cover": "/balatroT.AVIF",
-    "url": "/balatro.html",
+    "cover": "/balatroT",
+    "url": "/balatro",
     "author": "Jonathan McEntee",
     "authorLink": "https://www.newgrounds.com/portal/view/463241",
     "special": ["webport"]
