@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<style>
+    .theactuallyshtuff img{
+        height: 47px;
+    }
+    body {
+        background-color: rgb(32, 33, 36);
+        padding: 0;
+        margin: 0;
+        font-family: Roboto, sans-serif;
+    }
+    h1 span {
+        font-weight: 500;
+        color: rgb(154, 160, 166);
+        font-size: 25px;
+    }
+    strong {
+        font-weight: bolder;
+        font-size: 15px;
+        color: rgb(154, 160, 166);
+    }
+    p, ul li {
+        color: rgb(154, 160, 166);
+        font-size: 15px;
+    }
+    ul a {
+        color: rgb(138, 180, 248);
+        text-decoration: none;
+    }
+    li {
+        padding-bottom: 5px;
+    }
+    ul {
+        list-style-type: disc;
+    }
+    .theactuallyshtuff {
+        max-width: 655px;
+        width: 90%;
+        margin: 120px auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    #theurlthing {
+        word-wrap: break-word;
+        overflow-wrap: anywhere;
+    }
+    .button-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .Detailbtn, .Reloadbtn {
+        padding: 8px 16px;
+        border-radius: 100px;
+        border: none;
+        color: rgb(154, 160, 166);
+        cursor: pointer;
+        font-size: 14px;
+        background-color: rgb(32, 33, 36);
+    }
+    .Detailbtn {
+        border: 1px solid rgb(95, 99, 104);
+        color: rgb(138, 180, 248);
+    }
+    .Reloadbtn {
+        background-color: rgb(138, 180, 248);
+        color: rgb(32, 33, 36);
+    }
+    .errorcode p {
+        font-size: 12px;
+    }
+</style>
+</head>
+<body>
+    <div class="theactuallyshtuff">
+        <img src="/offline.png" alt="offlineimg">
+        <h1>
+            <span>
+                First time searching?
+            </span>
+        </h1>
+        <p>
+            <strong id="theurlthing"></strong>
+            had trouble loading 
+        </p>
+        <div class="suggestons">
+            <p>Try:</p>
+            <ul>
+                <li>
+                    Refreshing
+                </li>
+                <li>
+                    <a href="https://google.com" onclick="toggleHelpBox()">Is the proxy searching correctly?</a>
+                </li>
+                <li>
+                    <a href="javascript:diagnoseErrors()" id="diagnose-link">Open devtools and swap proxy linking to /active/embed.html?url=https://example.com</a>
+                </li>
+            </ul>
+            <div class="errorcode">
+                <p>ERR_FUNC_BROKE</p>
+            </div>
+            <div class="button-row">
+                <button class="Detailbtn">
+                    Details
+                </button>
+                <button class="Reloadbtn" onclick="location.reload()">
+                    Reload
+                </button>
+            </div>
+        </div>
+    </div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        let urlWithoutProtocol = window.location.href.replace(/^https?:\/\//, '');
+        document.title = urlWithoutProtocol;
+        document.getElementById('theurlthing').textContent = urlWithoutProtocol;
+    });
+</script>
+</body>
+</html>

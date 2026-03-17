@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Loading - Embed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: rgb(20, 20, 20);
+        }
+
+        .loading-screen {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: rgb(200, 200, 200);
+            font-family: 'Inter';
+        }
+        
+        #site-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            border: none;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading-screen">
+        <p class="info">
+            Handling your request...
+        </p>
+    </div>
+    <iframe id="site-iframe" src="" style="z-index: 9999;" allow="fullscreen; autoplay; encrypted-media; picture-in-picture; microphone; camera; geolocation; clipboard-write; payment; midi; vr; document-domain; pointer-lock">></iframe>
+    <script>
+        var iframe = document.getElementById("site-iframe");
+        iframe.src = localStorage.getItem("url");
+
+        iframe.onload = function() {
+        iframe.style.display = "block";
+        document.querySelector(".loading-screen").style.display = "none";
+        document.title = "Embeddr v1";
+        };
+    </script>
+</body>
+
+</html>
