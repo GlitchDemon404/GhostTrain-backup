@@ -48,6 +48,14 @@
     "authorLink": "https://onionfist.com"
   },
   {
+    "name": "Balatro",
+    "cover": "/balatroT.AVIF",
+    "url": "/balatro.html",
+    "author": "Jonathan McEntee",
+    "authorLink": "https://www.newgrounds.com/portal/view/463241",
+    "special": ["webport"]
+  },
+  {
     "id": 723,
     "name": "Brotato",
     "cover": "{COVER_URL}/723.png",
