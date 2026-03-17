@@ -1,145 +1,133 @@
 <!doctype html>
 <html>
-	<head>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <title>Ghost Train</title>
 
-		<meta charset="utf-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-		/>
-		<title>Ghost Train</title>
+    <link rel="icon" type="image/png" href="sj.png">
 
-		<link rel="icon" type="image/png" href="sj.png">
+    <script src="/scram/scramjet.all.js"></script>
+    <script src="/baremux/index.js"></script>
 
-	
-		<script src="/scram/scramjet.all.js"></script>
-		<script src="/baremux/index.js"></script>
-		
-		<link rel="stylesheet" href="index.css" />
-		<script src="register-sw.js" defer></script>
-		<script src="search.js" defer></script>
-		<script src="index.js" defer></script>
-	</head>
-	
-	<body>
-		<div title="Ghost Train Logo" class="flex-center logo-wrapper header-center">
-			<img class="logo" src="sj.png" alt="Ghost Train" style="width: 150px; filter: drop-shadow(0 0 15px #00ff88);">
+    <link rel="stylesheet" href="index.css" />
+    <script src="register-sw.js" defer></script>
+    <script src="search.js" defer></script>
+</head>
 
-			<h1 style="text-shadow: 0 0 20px #00ff88; font-family: monospace; font-size: 80px;">GHOST TRAIN</h3>
-		<div class="flex-center desc left-margin">
-    <p id="random-text" style="text-align: center; margin-left: auto; color: #cccccc; font-family: 'monospace'; font-size: 1.1rem; text-shadow: 0 0 10px rgba(0, 255, 136, 2.5); max-width: 600px; line-height: 1.5; margin: 20px auto;">
-        Loading the Ghost Train...
-    </p>
-</div>
+<body>
+    <div title="Ghost Train Logo" class="flex-center logo-wrapper header-center">
+        <img class="logo" src="sj.png" alt="Ghost Train" style="width: 150px; filter: drop-shadow(0 0 15px #00ff88);">
+        <h1 style="text-shadow: 0 0 20px #00ff88; font-family: monospace; font-size: 80px;">
+            GHOST TRAIN
+        </h1>
 
+        <div class="flex-center desc left-margin">
+            <p id="random-text" style="text-align: center; margin-left: auto; color: #cccccc; font-family: monospace; font-size: 1.1rem; text-shadow: 0 0 10px rgba(0, 255, 136, 2.5); max-width: 600px; line-height: 1.5; margin: 20px auto;">
+                Loading the Ghost Train...
+            </p>
+        </div>
+    </div>
 
-		</div>
+    <nav class="side-nav">
+        <ul>
+            <li><a href="index.html" title="Home"><img src="home.png" class="nav-icon"></a></li>
+            <li><a href="games.html" title="Games"><img src="games.png" class="nav-icon"></a></li>
+            <li><a href="movies.html" title="Movies"><img src="movies.png" class="nav-icon"></a></li>
+            <li><a href="music.html" title="Music"><img src="music.png" class="nav-icon"></a></li>
+            <li><a href="settings.html" title="Settings"><img src="settings.png" class="nav-icon"></a></li>
+        </ul>
+    </nav>
+    <form id="sj-form" class="flex-center">
+        <input id="sj-address" type="text" placeholder="Travel to your destination!" />
+    </form>
 
-<nav class="side-nav">
-    <ul>
-        <li><a href="index.html" title="Home"><img src="home.png" class="nav-icon"></a></li>
-        <li><a href="games.html" title="Games"><img src="games.png" class="nav-icon"></a></li>
-        <li><a href="movies.html" title="Movies"><img src="movies.png" class="nav-icon"></a></li>
-        <li><a href="music.html" title="Music"><img src="music.png" class="nav-icon"></a></li>
-        <li><a href="settings.html" title="Settings"><img src="settings.png" class="nav-icon"></a></li>
-    </ul>
-</nav>
+    <div class="desc left-margin">
+        <p id="sj-error"></p>
+        <pre id="sj-error-code"></pre>
+    </div>
 
-		<form id="sj-form" class="flex-center">
-			<input
-				id="sj-search-engine"
-				value="https://www.google.com/search?q=%s"
-				type="hidden"
-			/>
-			<input id="sj-address" type="text" placeholder="Travel to your destination!" />
-		</form>
-		<div class="desc left-margin">
-			<p id="sj-error"></p>
-			<pre id="sj-error-code"></pre>
-		</div>
-		<footer>
-			<div>
-				<a
-									>
-				<a
-					
-				>
-							</div>
-			<div>
-				
-			</div>
-		</footer>
-		<script>
-    const ghostlyMessages = [
-        "GhostINC is the goat",
-        "Join our discord plsss",
-        "I love Blox Card lol",
-        "Check out VANDAL!",
-        "I hate school",
-        "Enjoy!",
-        "Your ticket to the Ghost Station is approved!",
-		"idk wut else to add",
-		"This is cool",
-		"Jason lost in Vagas",
-		"I can beat Masie in a 1v1",
-		"Darius like Nas",
-		"I made this",
-		"The credits 💀",
-		"Dont get caught",
-		"Gatekeep this or not",
-		"No Beef",
-		"Still in school ;(",
-		"This is proof",
-		"How long till the school finds this",
-		"I think MrCoffee is still mad at me",
-		"MrCoffee found out",
-		"Why Ghost Train?",
-		"Our discord is so funni",
-		"Give suggestions on our Discord!",
-		"Lucas Johnson is so tuff",
-		"Play Stud Tower Obby on Roblox",
-		"Sub to ClutchDemonlemo on YT",
-		"Welcome to Ghost Train!",
-		"Im failing math again ;(",
-		"Was about to quit after 2 min",
-		"Mr Coffee is chill now, pls dont make me regret this",
-		"I want to improve the site brah",
-		"Rip King Von & Lil Loaded",
-		"Ty GhostINC(Leah and Devvy) for helping",
-		"Almost got expelled for fighting",
-		"How do I make the site better",
-		"Everyone at school be calling me timmy tuff knuckle, but they cant do shit",
-		"The snitch gang is not tuff 🥀",
-		"OP",
-		"Monkey Pax!!!",
-		"Check out our other stations!",
-		"Pls sub to ClutchDemonlemo on yt pls pls pls",
-		"Landon > Uzair",
-		"FINNNNN",
-		"Finn likes lil kids",
-		"Im broke as shit",
-		"I need money to run this brah",
-		"FEED ME MONEY!",
-		"I suck at coding",
-		"Why is there so many proxies with space name, no offense",
-		"Pls work",
-		"I hate the kids at my school",
-		"My basketball team is so funni",
-		"DONT BE A SNITCH!",
-		"I know everyone",
-		"So many things to download",
-		"Github is so hard to use"
-    ];
-
-    // Pick a random message from the list above
-    const randomIndex = Math.floor(Math.random() * ghostlyMessages.length);
-    
-    // Put that message into the paragraph tag
-    document.getElementById('random-text').innerText = ghostlyMessages[randomIndex];
-</script>
-<a href="https://discord.gg/cF3jXhce5t" class="discord-btn" target="_blank">
-    <img src="discord.png" alt="Discord">
-</a>
-
-	</body>
+    <footer>
+        <div></div>
+        <div></div>
+    </footer>
+    <script>
+        const ghostlyMessages = [
+            "GhostINC is the goat",
+            "Join our discord plsss",
+            "I love Blox Card lol",
+            "Check out VANDAL!",
+            "I hate school",
+            "Enjoy!",
+            "Your ticket to the Ghost Station is approved!",
+            "idk wut else to add",
+            "This is cool",
+            "Jason lost in Vagas",
+            "I can beat Masie in a 1v1",
+            "Darius like Nas",
+            "I made this",
+            "The credits 💀",
+            "Dont get caught",
+            "Gatekeep this or not",
+            "No Beef",
+            "Still in school ;(",
+            "This is proof",
+            "How long till the school finds this",
+            "I think MrCoffee is still mad at me",
+            "MrCoffee found out",
+            "Why Ghost Train?",
+            "Our discord is so funni",
+            "Give suggestions on our Discord!",
+            "Lucas Johnson is so tuff",
+            "Play Stud Tower Obby on Roblox",
+            "Sub to ClutchDemonlemo on YT",
+            "Welcome to Ghost Train!",
+            "Im failing math again ;(",
+            "Was about to quit after 2 min",
+            "Mr Coffee is chill now, pls dont make me regret this",
+            "I want to improve the site brah",
+            "Rip King Von & Lil Loaded",
+            "Ty GhostINC(Leah and Devvy) for helping",
+            "Almost got expelled for fighting",
+            "How do I make the site better",
+            "Everyone at school be calling me timmy tuff knuckle, but they cant do shit",
+            "The snitch gang is not tuff 🥀",
+            "OP",
+            "Monkey Pax!!!",
+            "Check out our other stations!",
+            "Pls sub to ClutchDemonlemo on yt pls pls pls",
+            "Landon > Uzair",
+            "FINNNNN",
+            "Finn likes lil kids",
+            "Im broke as shit",
+            "I need money to run this brah",
+            "FEED ME MONEY!",
+            "I suck at coding",
+            "Why is there so many proxies with space name, no offense",
+            "Pls work",
+            "I hate the kids at my school",
+            "My basketball team is so funni",
+            "DONT BE A SNITCH!",
+            "I know everyone",
+            "So many things to download",
+            "Github is so hard to use"
+        ];
+        const randomIndex = Math.floor(Math.random() * ghostlyMessages.length);
+        document.getElementById('random-text').innerText = ghostlyMessages[randomIndex];
+    </script>
+    <script>
+        document.getElementById("sj-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            let input = document.getElementById("sj-address").value.trim();
+            if (!input) return;
+            if (!input.startsWith("http://") && !input.startsWith("https://")) {
+                input = "https://" + input;
+            }
+            window.location.href = "/active/embed.html?url=" + encodeURIComponent(input);
+        });
+    </script>
+    <a href="https://discord.gg/cF3jXhce5t" class="discord-btn" target="_blank">
+        <img src="discord.png" alt="Discord">
+    </a>
+</body>
 </html>
