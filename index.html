@@ -38,6 +38,7 @@
             <li><a href="settings.html" title="Settings"><img src="settings.png" class="nav-icon"></a></li>
         </ul>
     </nav>
+
     <form id="sj-form" class="flex-center">
         <input id="sj-address" type="text" placeholder="Travel to your destination!" />
     </form>
@@ -110,22 +111,35 @@
             "DONT BE A SNITCH!",
             "I know everyone",
             "So many things to download",
-            "Github is so hard to use"
+            "Github is so ez to use"
         ];
+
         const randomIndex = Math.floor(Math.random() * ghostlyMessages.length);
         document.getElementById('random-text').innerText = ghostlyMessages[randomIndex];
     </script>
     <script>
         document.getElementById("sj-form").addEventListener("submit", function (e) {
             e.preventDefault();
+
             let input = document.getElementById("sj-address").value.trim();
             if (!input) return;
-            if (!input.startsWith("http://") && !input.startsWith("https://")) {
-                input = "https://" + input;
+
+            let finalUrl;
+
+            try {
+                if (!input.match(/^https?:\/\//i)) {
+                    input = "https://" + input;
+                }
+                new URL(input);
+                finalUrl = input;
+
+            } catch {
+                finalUrl = "https://duckduckgo.com/?q=" + encodeURIComponent(input);
             }
-            window.location.href = "/active/embed.html?url=" + encodeURIComponent(input);
+            window.location.href = "/active/embed.html?url=" + encodeURIComponent(finalUrl);
         });
     </script>
+
     <a href="https://discord.gg/cF3jXhce5t" class="discord-btn" target="_blank">
         <img src="discord.png" alt="Discord">
     </a>
