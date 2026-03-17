@@ -1,149 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Ghost Train</title>
 
-    <link rel="icon" type="image/png" href="sj.png">
+    <link rel="icon" href="sj.png">
+    <link rel="stylesheet" href="index.css">
 
-    <script src="/scram/scramjet.all.js"></script>
-    <script src="/baremux/index.js"></script>
-
-    <link rel="stylesheet" href="index.css" />
-    <script src="register-sw.js" defer></script>
-    <script src="search.js" defer></script>
+    <script src="/active/uv/uv.bundle.js"></script>
+    <script src="/active/uv/uv.config.js"></script>
+    <script src="/register-sw.js"></script>
 </head>
 
 <body>
-    <div title="Ghost Train Logo" class="flex-center logo-wrapper header-center">
-        <img class="logo" src="sj.png" alt="Ghost Train" style="width: 150px; filter: drop-shadow(0 0 15px #00ff88);">
-        <h1 style="text-shadow: 0 0 20px #00ff88; font-family: monospace; font-size: 80px;">
+
+    <div class="logo-wrapper" style="text-align:center;">
+        <img src="sj.png" style="width:150px; filter:drop-shadow(0 0 15px #00ff88);">
+        <h1 style="font-family:monospace; font-size:70px; text-shadow:0 0 20px #00ff88;">
             GHOST TRAIN
         </h1>
-
-        <div class="flex-center desc left-margin">
-            <p id="random-text" style="text-align: center; margin-left: auto; color: #cccccc; font-family: monospace; font-size: 1.1rem; text-shadow: 0 0 10px rgba(0, 255, 136, 2.5); max-width: 600px; line-height: 1.5; margin: 20px auto;">
-                Loading the Ghost Train...
-            </p>
-        </div>
     </div>
 
-    <nav class="side-nav">
-        <ul>
-            <li><a href="index.html" title="Home"><img src="home.png" class="nav-icon"></a></li>
-            <li><a href="games.html" title="Games"><img src="games.png" class="nav-icon"></a></li>
-            <li><a href="movies.html" title="Movies"><img src="movies.png" class="nav-icon"></a></li>
-            <li><a href="music.html" title="Music"><img src="music.png" class="nav-icon"></a></li>
-            <li><a href="settings.html" title="Settings"><img src="settings.png" class="nav-icon"></a></li>
-        </ul>
-    </nav>
-
-    <form id="sj-form" class="flex-center">
-        <input id="sj-address" type="text" placeholder="Travel to your destination!" />
+    <form id="uv-form" style="text-align:center; margin-top:30px;">
+        <input id="uv-address" type="text" placeholder="Travel anywhere..." 
+            style="width:60%; padding:15px; font-size:18px;">
     </form>
 
-    <div class="desc left-margin">
-        <p id="sj-error"></p>
-        <pre id="sj-error-code"></pre>
-    </div>
+    <p id="uv-error" style="text-align:center; color:red;"></p>
 
-    <footer>
-        <div></div>
-        <div></div>
-    </footer>
     <script>
-        const ghostlyMessages = [
-            "GhostINC is the goat",
-            "Join our discord plsss",
-            "I love Blox Card lol",
-            "Check out VANDAL!",
-            "I hate school",
-            "Enjoy!",
-            "Your ticket to the Ghost Station is approved!",
-            "idk wut else to add",
-            "This is cool",
-            "Jason lost in Vegas",
-            "I can beat Masie in a 1v1",
-            "Darius like Nas",
-            "I made this",
-            "The credits 💀",
-            "Dont get caught",
-            "Gatekeep this or not",
-            "No Beef",
-            "Still in school ;(",
-            "This is proof",
-            "How long till the school finds this",
-            "I think MrCoffee is still mad at me",
-            "MrCoffee found out",
-            "Why Ghost Train?",
-            "Our discord is so funni",
-            "Give suggestions on our Discord!",
-            "Lucas Johnson is so tuff",
-            "Play Stud Tower Obby on Roblox",
-            "Sub to ClutchDemonlemo on YT",
-            "Welcome to Ghost Train!",
-            "Im failing math again ;(",
-            "Was about to quit after 2 min",
-            "Mr Coffee is chill now, pls dont make me regret this",
-            "I want to improve the site brah",
-            "Rip King Von & Lil Loaded",
-            "Ty GhostINC(Leah and Devvy) for helping",
-            "Almost got expelled for fighting",
-            "How do I make the site better",
-            "Everyone at school be calling me timmy tuff knuckle, but they cant do shit",
-            "The snitch gang is not tuff 🥀",
-            "OP",
-            "Monkey Pax!!!",
-            "Check out our other stations!",
-            "Pls sub to ClutchDemonlemo on yt pls pls pls",
-            "Landon > Uzair",
-            "FINNNNN",
-            "Finn likes lil kids",
-            "Im broke as shit",
-            "I need money to run this brah",
-            "FEED ME MONEY!",
-            "I suck at coding",
-            "Why is there so many proxies with space name, no offense",
-            "Pls work",
-            "I hate the kids at my school",
-            "My basketball team is so funni",
-            "DONT BE A SNITCH!",
-            "I know everyone",
-            "So many things to download",
-            "Github is so hard to use",
-            "Len is a faggot",
-            "Jacob Armenta says he wants to fuck Zoey"
-        ];
+        const form = document.getElementById("uv-form");
+        const input = document.getElementById("uv-address");
 
-        const randomIndex = Math.floor(Math.random() * ghostlyMessages.length);
-        document.getElementById('random-text').innerText = ghostlyMessages[randomIndex];
-    </script>
-    <script>
-        document.getElementById("sj-form").addEventListener("submit", function (e) {
+        form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
-            let input = document.getElementById("sj-address").value.trim();
-            if (!input) return;
-
-            let finalUrl;
+            let url = input.value.trim();
+            if (!url) return;
 
             try {
-                if (!input.match(/^https?:\/\//i)) {
-                    input = "https://" + input;
+                if (!url.startsWith("http://") && !url.startsWith("https://")) {
+                    url = "https://" + url;
                 }
-                new URL(input);
-                finalUrl = input;
 
+                new URL(url);
             } catch {
-                finalUrl = "https://duckduckgo.com/?q=" + encodeURIComponent(input);
+                url = "https://duckduckgo.com/?q=" + encodeURIComponent(url);
             }
-            window.location.href = "active/embed.html?url=" + encodeURIComponent(finalUrl);
+
+            await navigator.serviceWorker.register("/uv-sw.js", {
+                scope: __uv$config.prefix
+            });
+
+            window.location.href = __uv$config.prefix + __uv$config.encodeUrl(url);
         });
     </script>
 
-    <a href="https://discord.gg/cF3jXhce5t" class="discord-btn" target="_blank">
-        <img src="discord.png" alt="Discord">
-    </a>
 </body>
+
 </html>
