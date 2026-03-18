@@ -134,7 +134,7 @@ iframe.contentWindow.document.open();
 iframe.contentWindow.document.write(html);
 iframe.contentWindow.document.close();
 
-document.title=`${game.name} - Drive View`;
+document.title=`${game.name} - Ghost Train`;
 }
 
 window.closeGame=()=>{
