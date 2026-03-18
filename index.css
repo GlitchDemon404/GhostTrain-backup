@@ -51,7 +51,6 @@ font-family:"Courier New",Courier,monospace;
 
 .logo{
 height:25vh;
-width:width=device-width;
 animation:ghost-float 4s ease-in-out infinite;
 filter:drop-shadow(0 0 15px #00ff88);
 }
