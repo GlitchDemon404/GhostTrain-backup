@@ -8,22 +8,6 @@
     "authorLink": "https://azurgames.com"
   },
   {
-    "id": 1,
-    "name": "OvO BROKEN",
-    "cover": "{COVER_URL}/1.png",
-    "url": "{HTML_URL}/1-a.html",
-    "author": "Dedra Games",
-    "authorLink": "https://dedragames.com"
-  },
-  {
-    "id": 2,
-    "name": "OvO 2 BROKEN",
-    "cover": "{COVER_URL}/2.png",
-    "url": "{HTML_URL}/2.html",
-    "author": "Dedra Games",
-    "authorLink": "https://dedragames.com"
-  },
-  {
     "id": 3,
     "name": "OvO 3 Dimensions",
     "cover": "{COVER_URL}/3.png",
