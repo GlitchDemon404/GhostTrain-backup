@@ -9,6 +9,14 @@
     "special": ["webport"]
   },
   {
+    "name": "Balatro",
+    "cover": "balatroT.avif",
+    "url": "https://glitchdemon404.github.io/GhostTrain-backup/balatro.html",
+    "author": "LocalThunk",
+    "authorLink": "https://localthunk.com/",
+    "special": ["webport"]
+  },
+  {
     "id": 267,
     "name": "Pizza Tower",
     "cover": "{COVER_URL}/267.png",
@@ -285,14 +293,6 @@
     "url": "{HTML_URL}/30.html",
     "author": "CASUAL AZUR GAMES",
     "authorLink": "https://play.google.com/store/apps/details?id=com.games.bottle"
-  },
-  {
-    "name": "Balatro",
-    "cover": "balatroT.avif",
-    "url": "https://glitchdemon404.github.io/GhostTrain-backup/balatro.html",
-    "author": "LocalThunk",
-    "authorLink": "https://localthunk.com/",
-    "special": ["webport"]
   },
   {
     "id": 31,
