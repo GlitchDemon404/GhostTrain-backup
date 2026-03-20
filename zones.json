@@ -55,6 +55,14 @@
     "authorLink": "https://hirohun.itch.io/side-effects"
   },
   {
+    "id": 655,
+    "name": "Goblin Goopmaxxing",
+    "cover": "{COVER_URL}/655.png",
+    "url": "{HTML_URL}/655.html",
+    "author": "BugfightStudio",
+    "authorLink": "https://store.steampowered.com/app/4107470/Goblin_Goopmaxxing/"
+  },
+  {
     "id": 0,
     "name": "Bowmasters",
     "cover": "{COVER_URL}/0.png",
@@ -5289,14 +5297,6 @@
     "url": "{HTML_URL}/654.html",
     "author": "Square Enix",
     "authorLink": "https://ffvii.square-enix-games.com/en-us"
-  },
-  {
-    "id": 655,
-    "name": "Goblin Goopmaxxing",
-    "cover": "{COVER_URL}/655.png",
-    "url": "{HTML_URL}/655.html",
-    "author": "BugfightStudio",
-    "authorLink": "https://store.steampowered.com/app/4107470/Goblin_Goopmaxxing/"
   },
   {
     "id": 656,
