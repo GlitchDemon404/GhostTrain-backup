@@ -19,6 +19,15 @@
     "special": ["port"]
   },
   {
+    "id": 646,
+    "name": "Buster Jam",
+    "cover": "{COVER_URL}/646.png",
+    "url": "{HTML_URL}/646-fixed.html",
+    "author": "TALL GLASS",
+    "authorLink": "https://www.tallglassgames.com/",
+    "special": ["port"]
+  },
+  {
     "id": 723,
     "name": "Brotato",
     "cover": "{COVER_URL}/723.png",
@@ -5218,15 +5227,6 @@
     "url": "{HTML_URL}/645-e.html",
     "author": "Varun R.",
     "authorLink": "https://varunramesh.itch.io/arthurs-nightmare",
-    "special": ["port"]
-  },
-  {
-    "id": 646,
-    "name": "Buster Jam",
-    "cover": "{COVER_URL}/646.png",
-    "url": "{HTML_URL}/646-fixed.html",
-    "author": "TALL GLASS",
-    "authorLink": "https://www.tallglassgames.com/",
     "special": ["port"]
   },
   {
