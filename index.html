@@ -7,12 +7,8 @@
 
     <link rel="icon" type="image/png" href="sj.png">
 
-    <script src="/scram/scramjet.all.js"></script>
-    <script src="/baremux/index.js"></script>
-
     <link rel="stylesheet" href="index.css" />
     <script src="register-sw.js" defer></script>
-    <script src="search.js" defer></script>
 </head>
 
 <body>
@@ -52,6 +48,7 @@
         <div></div>
         <div></div>
     </footer>
+
     <script>
         const ghostlyMessages = [
             "GhostINC is the goat",
@@ -82,7 +79,7 @@
             "Why Ghost Train?",
             "Our discord is so funni",
             "Give suggestions on our Discord!",
-            "Lucas Johnson is so tuff 🥀",
+            "Lucas Johnson is so tuff",
             "Play Stud Tower Obby on Roblox",
             "Sub to ClutchDemonlemo on YT",
             "Welcome to Ghost Train!",
@@ -121,6 +118,7 @@
         const randomIndex = Math.floor(Math.random() * ghostlyMessages.length);
         document.getElementById('random-text').innerText = ghostlyMessages[randomIndex];
     </script>
+
     <script>
         document.getElementById("sj-form").addEventListener("submit", function (e) {
             e.preventDefault();
@@ -140,7 +138,8 @@
             } catch {
                 finalUrl = "https://duckduckgo.com/?q=" + encodeURIComponent(input);
             }
-            window.location.href = "active/embed.html?url=" + encodeURIComponent(finalUrl);
+
+            window.location.href = "/active/embed.html?url=" + encodeURIComponent(finalUrl);
         });
     </script>
 
