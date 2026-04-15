@@ -181,11 +181,16 @@ class UVServiceWorker extends EventEmitter {
             this.emit('response', resEvent);
             if (resEvent.intercepted) return resEvent.returnValue;
 
-            return new Response(responseCtx.body, {
-                headers: responseCtx.headers,
-                status: responseCtx.status,
-                statusText: responseCtx.statusText,
-            });
+            const safeStatus =
+  responseCtx.status && responseCtx.status >= 200 && responseCtx.status <= 599
+    ? responseCtx.status
+    : 200;
+
+    return new Response(responseCtx.body, {
+       headers: responseCtx.headers,
+       status: safeStatus,
+       statusText: responseCtx.statusText || "OK",
+    });
 
         } catch(err) {
             return new Response(err.toString(), {
