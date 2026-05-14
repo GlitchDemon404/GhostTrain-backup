@@ -1,49 +1,337 @@
 <!doctype html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>Ghost Train • 404</title>
-    <link rel="icon" type="image/png" href="sj.png">
-    <link rel="stylesheet" href="index.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+<title>Settings</title>
+
+<link rel="icon" type="image/png" href="sj.png">
+<link rel="stylesheet" href="index.css" />
+<script src="register-sw.js" defer></script>
+
+<style>
+  /* ── Settings page layout ── */
+  body {
+    margin: 0;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: monospace;
+    min-height: 100vh;
+  }
+
+  /* Page wrapper */
+  .settings-wrapper {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 16px 60px;
+  }
+
+  /* Page heading */
+  .settings-heading {
+    font-size: 22px;
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88aa;
+    margin-bottom: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* Tab bar */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #1e1e1e;
+    padding-bottom: 0;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    color: #888;
+    font-family: monospace;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    position: relative;
+    bottom: -1px;
+  }
+
+  .tab-btn:hover {
+    color: #00ff88;
+  }
+
+  .tab-btn.active {
+    color: #00ff88;
+    border-bottom: 2px solid #00ff88;
+    text-shadow: 0 0 6px #00ff88aa;
+  }
+
+  /* Tab content panels */
+  .tab-panel { display: none; flex-direction: column; gap: 12px; }
+  .tab-panel.active { display: flex; }
+
+  /* ── SETTING BOX ── */
+  .setting-box {
+    background: #111;
+    border: 1px solid #1e1e1e;
+    border-radius: 8px;
+    padding: 18px 22px;
+    transition: border-color 0.2s;
+  }
+
+  .setting-box:hover {
+    border-color: #00ff8844;
+  }
+
+  .setting-box h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+    color: #00ff88;
+    text-shadow: 0 0 6px #00ff8866;
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  .setting-box p {
+    margin: 0 0 14px;
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* Dropdown */
+  .setting-select {
+    background: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    color: #00ff88;
+    font-family: monospace;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 260px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2300ff88' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    transition: border-color 0.2s;
+  }
+
+  .setting-select:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 8px #00ff8833;
+  }
+
+  /* Toggle switch */
+  .toggle-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  .toggle-label input { display: none; }
+
+  .toggle-track {
+    width: 42px;
+    height: 24px;
+    background: #222;
+    border: 1px solid #333;
+    border-radius: 999px;
+    position: relative;
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .toggle-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    background: #555;
+    border-radius: 50%;
+    transition: transform 0.25s, background 0.25s;
+  }
+
+  .toggle-label input:checked ~ .toggle-track {
+    background: #00ff8833;
+    border-color: #00ff88;
+    box-shadow: 0 0 8px #00ff8844;
+  }
+
+  .toggle-label input:checked ~ .toggle-track .toggle-thumb {
+    transform: translateX(18px);
+    background: #00ff88;
+  }
+
+  /* Input field */
+  .setting-input {
+    background: #0d0d0d;
+    border: 1px solid #2a2a2a;
+    color: #00ff88;
+    font-family: monospace;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    width: 260px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+  }
+
+  .setting-input:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 8px #00ff8833;
+  }
+
+  /* Action buttons */
+  .setting-btn {
+    width: 140px;
+    height: 38px;
+    background: #00ff88;
+    color: black;
+    border: 1.5px solid #00ff88;
+    font-family: monospace;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #00ff88aa;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .setting-btn:hover {
+    background: black;
+    color: #00ff88;
+  }
+
+  .setting-btn.ghost {
+    background: transparent;
+    color: #00ff88;
+    border: 1.5px solid #00ff8866;
+    box-shadow: none;
+  }
+
+  .setting-btn.ghost:hover {
+    border-color: #00ff88;
+    box-shadow: 0 0 8px #00ff8844;
+  }
+
+  /* Info rows in the Info tab */
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 4px 0;
+    border-bottom: 1px solid #1a1a1a;
+    color: #666;
+  }
+
+  .info-row span:last-child { color: #00ff88; }
+</style>
+
+<script>
+  /* Tab switching */
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+    document.getElementById(tabId).classList.add('active');
+  }
+
+  function openCredits() {
+    const win = window.open("", "_blank");
+    if (!win) { alert("Popup blocked — allow popups to view credits."); return; }
+    win.document.write(`<!DOCTYPE html><html><head><title>Credits</title>
+    <style>body{margin:0;background:black;color:#00ff88;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh;}.col{display:flex;flex-direction:column;gap:8px;font-size:15px;}.item{text-shadow:0 0 8px #00ff88;}</style></head>
+    <body><div class="col">
+      <div class="item">Credits</div>
+      <div class="item">Made by: Clutchdemon, Leah, Devvy, Vail, and Lockiney</div>
+      <div class="item">UV V1 made by Leah and Vail (kinda).</div>
+      <div class="item">UV V2 made by me and Lockiney.</div>
+      <div class="item">Games V1 made by Leah, Devvy, and me.</div>
+      <div class="item">Games V2 made me and Lockiney.</div>
+      <div class="item">Movies V1 made by Leah.</div>
+      <div class="item">Movies V2 made by me.</div>
+      <div class="item">Homepage made by me.</div>
+      <div class="item">Settings made by me.</div>
+      <div class="item">404 page made by Devvy.</div>
+      <div class="item">Most (prolly all) backend is Leah🔥</div>
+    </div></body></html>`);
+    win.document.close();
+  }
+
+  function openInAboutBlank() {
+    const currentUrl = window.location.origin + "/index.html";
+    const win = window.open('about:blank', '_blank');
+    if (!win) { alert("Popup blocked — allow popups to open about blank."); return; }
+    win.document.write(`<!DOCTYPE html><html><head><title>Ghost Train</title>
+    <style>body{margin:0;background:black;}</style></head>
+    <body><iframe src="${currentUrl}" style="width:100%;height:100vh;border:none;"></iframe></body></html>`);
+    win.document.close();
+  }
+</script>
 </head>
 
 <body>
 
-    <div class="flex-center logo-wrapper" style="flex-direction:column; height:100vh; justify-content:center; text-align:center;">
-        <img class="logo" src="sj.png" alt="Ghost Train" style="width:150px; filter:drop-shadow(0 0 15px #00ff88);">
+<nav class="side-nav">
+  <ul>
+    <li><a href="index.html"><img src="home.png" class="nav-icon"></a></li>
+    <li><a href="games.html"><img src="games.png" class="nav-icon"></a></li>
+    <li><a href="movies.html"><img src="movies.png" class="nav-icon"></a></li>
+    <li><a href="music.html"><img src="music.png" class="nav-icon"></a></li>
+    <li><a href="settings.html"><img src="settings.png" class="nav-icon"></a></li>
+  </ul>
+</nav>
 
-        <h1 style="text-shadow:0 0 20px #00ff88; font-family:monospace; font-size:80px; margin:10px 0 0 0;">
-            GHOST TRAIN
-        </h1>
+<div class="settings-wrapper">
+  <div class="settings-heading">Settings</div>
 
-        <h2 style="font-size:140px; color:#00ff88; text-shadow:0 0 30px #00ff88; margin:0; font-family:monospace;">
-            404
-        </h2>
+  <!-- Tab bar -->
+  <div class="tab-bar">
+    <button class="tab-btn active" data-tab="tab-general"  onclick="switchTab('tab-general')">General</button>
+  </div>
 
-        <p style="color:#cccccc; font-family:monospace; font-size:1.2rem; text-shadow:0 0 10px rgba(0,255,136,2.5); max-width:600px; margin:20px auto;">
-            This station cannot be reached. This page is coming soon!
-        </p>
+  <!-- ── GENERAL ── -->
+  <div id="tab-general" class="tab-panel active">
 
-        <a href="index.html"
-           style="padding:14px 32px; border-radius:30px; background:rgba(0,0,0,.6); border:2px solid #00ff88; color:white; text-decoration:none; font-family:monospace; box-shadow:0 0 15px rgba(0,255,136,.3); transition:.3s;">
-            Return to the Station
-        </a>
+    <div class="setting-box">
+      <h3>Open About:Blank</h3>
+      <p>Opens the site inside an about:blank tab for extra stealth.</p>
+      <button class="setting-btn" onclick="openInAboutBlank()">Open About Blank</button>
     </div>
 
-    <nav class="side-nav">
-        <ul>
-            <li><a href="index.html"><img src="home.png" class="nav-icon"></a></li>
-            <li><a href="games.html"><img src="games.png" class="nav-icon"></a></li>
-            <li><a href="movies.html"><img src="movies.png" class="nav-icon"></a></li>
-            <li><a href="music.html"><img src="music.png" class="nav-icon"></a></li>
-            <li><a href="settings.html"><img src="settings.png" class="nav-icon"></a></li>
-        </ul>
-    </nav>
+    <div class="setting-box">
+      <h3>Credits</h3>
+      <p>See who built all of this.</p>
+      <button class="setting-btn ghost" onclick="openCredits()">View Credits</button>
+    </div>
 
-    <a href="https://discord.gg/bdZZUsJA" class="discord-btn" target="_blank">
-        <img src="discord.png" alt="Discord">
-    </a>
+  </div>
+
+
+<footer>
+  <div></div>
+  <div></div>
+</footer>
+
+<!-- Update toggle labels on change -->
+<script>
+  document.querySelectorAll('.toggle-label input').forEach(input => {
+    input.addEventListener('change', () => {
+      const label = input.closest('.toggle-label').querySelector('span:last-child');
+      label.textContent = input.checked ? 'Enabled' : 'Disabled';
+    });
+  });
+</script>
 
 </body>
 </html>
