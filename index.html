@@ -1,8 +1,9 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Ghost Train</title>
 
     <link rel="icon" type="image/png" href="sj.png">
@@ -12,6 +13,8 @@
 </head>
 
 <body>
+
+
     <div title="Ghost Train Logo" class="flex-center logo-wrapper header-center">
         <img class="logo" src="sj.png" alt="Ghost Train" style="width: 150px; filter: drop-shadow(0 0 15px #00ff88);">
         <h1 style="text-shadow: 0 0 20px #00ff88; font-family: monospace; font-size: 80px;">
@@ -45,20 +48,18 @@
     </div>
 
     <footer>
-        <div></div>
-        <div></div>
+
     </footer>
 
-   <!-- <script>
+     <script>
          const ghostlyMessages = [
-            "GhostINC is the goat",
+            "Ghost Services is the goat",
             "I hate Coach Kelly",
             "Join our discord plsss",
             "I love Blox Card lol",
-            "Check out VANDAL!",
+            "Check out Ghost Service! (ghostinc.online)",
             "I hate school",
             "Enjoy!",
-            "Your ticket to the Ghost Station is approved!",
             "idk wut else to add",
             "This is cool",
             "Jason lost in Vegas",
@@ -69,13 +70,14 @@
             "Dont get caught",
             "Dont bookmark this",
             "No Beef",
+            "Jun is a gay femboy",
             "Still in school ;(",
-            "Lucas is such a fucking pussy",
             "I FUCKING HATE MR CHASE, GO KILL YOURSELF",
             "This is proof",
             "How long till the school finds this",
             "I think MrCoffee is still mad at me",
             "MrCoffee found out",
+            "MrCoffee likes latinas",
             "Why Ghost Train?",
             "Our discord is so funni",
             "Give suggestions on our Discord!",
@@ -85,10 +87,9 @@
             "Welcome to Ghost Train!",
             "Im failing math again ;(",
             "Was about to quit after 2 min",
-            "Mr Coffee is chill now, pls dont make me regret this",
             "I want to improve the site brah",
             "Rip King Von & Lil Loaded",
-            "Ty GhostINC team for helping",
+            "Tysm Ghost Services for helping",
             "Gotta stop beefing brah",
             "How do I make the site better",
             "Everyone at school calling me timmy tuff knuckle, but they cant do shit",
@@ -113,14 +114,14 @@
             "Github is so hard to use",
             "Len is a faggot (Finn dared me to put this)",
             "Jacob Armenta says he wants to fuck Zoey (Jacob told me to put this)"
-        ]; -->
+        ]; 
 
         const randomIndex = Math.floor(Math.random() * ghostlyMessages.length);
         document.getElementById('random-text').innerText = ghostlyMessages[randomIndex];
     </script>
 
     <script>
-        document.getElementById("sj-form").addEventListener("submit", function (e) {
+        document.getElementById("sj-form").addEventListener("submit", function(e) {
             e.preventDefault();
 
             let input = document.getElementById("sj-address").value.trim();
@@ -129,22 +130,29 @@
             let finalUrl;
 
             try {
-                if (!input.match(/^https?:\/\//i)) {
-                    input = "https://" + input;
-                }
-                new URL(input);
-                finalUrl = input;
 
+                finalUrl = new URL(input).toString();
             } catch {
-                finalUrl = "https://duckduckgo.com/?q=" + encodeURIComponent(input);
+                try {
+
+                    const testUrl = new URL("https://" + input);
+                    if (testUrl.hostname.includes(".") && !testUrl.hostname.includes(" ")) {
+                        finalUrl = "https://" + input;
+                    } else {
+                        throw new Error("Not a domain");
+                    }
+                } catch {
+
+                    finalUrl = "https://duckduckgo.com/?q=" + encodeURIComponent(input);
+                }
             }
 
             window.location.href = "/active/embed.html?url=" + encodeURIComponent(finalUrl);
         });
     </script>
-
     <a href="https://discord.gg/cF3jXhce5t" class="discord-btn" target="_blank">
         <img src="discord.png" alt="Discord">
     </a>
 </body>
+
 </html>
